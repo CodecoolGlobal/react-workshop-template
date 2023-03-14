@@ -1,10 +1,5 @@
-import './App.css';
-import Task1 from './components/Task1'
-
 function App() {
-  return (
-    <Task1 />
-  );
+  return <p>Hi, from App()!</p>;
 }
 
 export default App;
