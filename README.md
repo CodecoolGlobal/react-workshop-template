@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# React Workshop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Dice
 
-## Available Scripts
+Simulate a six side dice (D6) roll.
 
-In the project directory, you can run:
+Goal: 
 
-### `npm start`
+- Learn how to use and update immutable states.
+- Use simple conditional rendering (ternary).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Create a Dice.jsx component, import it to the App.jsx and display it.
+2. Dice.jsx: Display a Button with a text "Roll".
+3. Dice.jsx: If the user clicks on the "Roll" button, show a random number from 1 to 6 next to the button.
+4. Dice.jsx: If the Dice is not clicked, first show a "Please press the Roll button." text.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Component hierarchy:
 
-### `npm test`
+- App
+  - Dice
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dice History
 
-### `npm run build`
+Record the roll history of the dice rolls. Reuse the Dice.jsx from the previous example.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Goal:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Learn how to lift a state up from the child component to the parent component.
+- Update mutable data structures, like an array.
+- Display lists with JSX elements.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Refactor App.jsx, Dice.jsx: Move the state to App.jsx, remove it from Dice.jsx. The new states must be an array of numbers in App.jsx.
+3. Dice.jsx: The Dice component should notify its parent component when a new dice is rolled. It should pass the new roll's value to it. Use the `onRoll` property to communicate this change.
+4. App.jsx: Handle the `onRoll` event. Collect the rolled number in a state (array).
+5. App.jsx: Display the list (`<ul></ul>`), of the previously rolled numbers as a list items (`<li></li>`). Use a prop to pass down the current rolls from App. 
 
-### `npm run eject`
+Component hierarchy:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- App
+  - Dice(onRoll)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Extend the roll model
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Goal:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Learn how to pass down a state from parent to child.
+- Adding new items to an array of objects.
 
-## Learn More
+1. Create a RollHistory.jsx component, import it to the App.jsx and display it.
+2. App.jsx: Record the following properties of each dice roll (the state should be changed from array of numbers to array of objects), the event still the Dice.jsx component's onRoll:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- The number which is rolled by the Dice.jsx.
+- The a boolean propery, indicated that the dice is collected or not.
+- An ID, an increasing number on each new roll, started from 10.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. RollHistory.jsx: move the list of rolls to this component, use a prop to pass down the rolls. 
 
-### Code Splitting
+Component hierarchy:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- App
+  - Dice(onRoll)
+  - RollHistory(rolls)
 
-### Analyzing the Bundle Size
+## Collect the dices
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You can mark a dice collected with a button.
 
-### Making a Progressive Web App
+Goal:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Updating states with an array of objects.
+- Lifting up a state from an array.
 
-### Advanced Configuration
+1. RollHistory.jsx: Show a list of rolled numbers with a Button named "Collect" on each. Have an event handler property called onCollect. It should be triggered with the ID of the given dice roll, when the user clicks on the "Collect" button.
+2. App.jsx: handle the onCollect event, modify the list of rolls' collected property according to it. 
+3. RollHistory.jsx: If roll is collected, show its number with ~~strikethrought~~ style. The Collect button must be disabled. If a roll is collected, it should be kept collected afterwards.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Component hierarchy:
 
-### Deployment
+- App
+  - Dice(onRoll)
+  - RollHistory(rolls, onCollect)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Remove dice
 
-### `npm run build` fails to minify
+Remove a dice from a roll history. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Goal:
+
+- State handling, remove a given item from a state with list of objects.
+
+1. App.jsx: Add a Remove button to each roll in a list. Use the onRemove prop as an event handler of the RollHistory component to nofity the parent component, when a user clicks on a paricular Remove button. Send the ID of the given roll to the event handler's param.
+2. App.jsx: When the RollHistory.jsx's onRemove event is happened, remove the given roll from the state.
+3. App.jsx: Only the non collected rolls can be removed.
+
+Component hierarchy:
+
+- App
+  - Dice(onRoll)
+  - RollHistory(rolls, onCollect, onRemove)
+
+## Yahtzee
+
+Implement a simplified [yahtzee](https://en.wikipedia.org/wiki/Yahtzee) game from this state. Freestyle.
+You can reuse the components from the previous exercises.
+
+Goal: 
+
+  - Play a little bit around what you have learned.
+
+Features, obligatory:
+
+- At most 6 rolls you have. If 6 rolls are displayed, the Roll button should be disabled. If you remove a dice, you can add a roll again. You can not remove a collected dice.
+- If a dice [category](https://en.wikipedia.org/wiki/Yahtzee#Lower_section) is collected, show its name in a new component. (3 of a kind, 4 of a kind, yahtzee, full house support is enough). In a case of multiple category match, the category with the highest score should be displayed.
+- Support restart of the game.
+
+Component Hierarchy:
+
+- App
+  - Dice(onRoll)
+  - RollHistory(rolls, onCollect, onRemove)
+  - CategoryResult(rolls)
+
+Extra features ideas:
+
+- The user remove at most 3 dices. Display them how many dices still have.
+- Show the scores next to detected category.
+- Support all roll categories.
+- Support automatic reroll of all non collected components. The remove 3 dices limit can be skipped, but you can reroll only 3 times.
+- Display dice faces instead of numbers.
