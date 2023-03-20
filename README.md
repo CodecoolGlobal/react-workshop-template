@@ -32,7 +32,7 @@ Goal:
 1. Refactor App.jsx, Dice.jsx: Move the state to App.jsx, remove it from Dice.jsx. The new states must be an array of numbers in App.jsx.
 3. Dice.jsx: The Dice component should notify its parent component when a new dice is rolled. It should pass the new roll's value to it. Use the `onRoll` property to communicate this change.
 4. App.jsx: Handle the `onRoll` event. Collect the rolled number in a state (array).
-5. App.jsx: Display the list (`<ul></ul>`), of the previously rolled numbers as a list items (`<li></li>`). Use a prop to pass down the current rolls from App. 
+5. App.jsx: Display the list (`<ul></ul>`) of the previously rolled numbers as a list items (`<li></li>`). Use the local rolls state from the App. 
 
 Component hierarchy:
 
@@ -53,7 +53,7 @@ Goal:
 - The a boolean propery, indicated that the dice is collected or not.
 - An ID, an increasing number on each new roll, started from 10.
 
-2. RollHistory.jsx: move the list of rolls to this component, use a prop to pass down the rolls. 
+2. RollHistory.jsx: move the list of rolls from App to this component, use a prop to pass down the rolls. 
 
 Component hierarchy:
 
