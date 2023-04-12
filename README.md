@@ -1,6 +1,22 @@
-# React Workshop
+# React State Workshop
 
-## Dice
+## Setup
+
+- Use this template to create a new repo in your github account.
+
+It is a simple Create React App
+
+`npm install`
+
+`npm start`
+
+
+## Tasks
+
+- Do the tasks one by one.
+- If you get stucked, check the background material's links
+
+### Dice
 
 Simulate a six side dice (D6) roll.
 
@@ -19,7 +35,14 @@ Component hierarchy:
 - App
   - Dice
 
-## Dice History
+### Background material
+
+  - [Conditional Rendering](https://react.dev/learn/conditional-rendering)
+  - [States](https://react.dev/learn/state-a-components-memory)
+  - [Extra: how state changes are updating the component](https://react.dev/learn/render-and-commit)
+
+
+### Dice History
 
 Record the roll history of the dice rolls. Reuse the Dice.jsx from the previous example.
 
@@ -37,9 +60,16 @@ Goal:
 Component hierarchy:
 
 - App
-  - Dice(onRoll)
+  - Dice (props: onRoll)
 
-## Extend the roll model
+#### Background material
+
+- [Lifting The States Up](https://react.dev/learn/sharing-state-between-components)
+- [Responding to events](https://react.dev/learn/responding-to-events)
+- [Updating Arrays](https://react.dev/learn/updating-arrays-in-state)
+- [Rendering Lists](https://react.dev/learn/rendering-lists)
+
+### Extend the roll model
 
 Goal:
 
@@ -51,24 +81,29 @@ Goal:
 
 - The number which is rolled by the Dice.jsx.
 - The a boolean propery, indicated that the dice is collected or not.
-- An ID, an increasing number on each new roll, started from 10.
+- An ID, an increasing number on each new roll.
 
 2. RollHistory.jsx: move the list of rolls from App to this component, use a prop to pass down the rolls. 
 
 Component hierarchy:
 
 - App
-  - Dice(onRoll)
-  - RollHistory(rolls)
+  - Dice (props: onRoll)
+  - RollHistory (props: rolls)
 
-## Collect the dices
+#### Background material
+
+- [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
+- [Adding an Item to an Array](https://react.dev/learn/updating-arrays-in-state#adding-to-an-array)
+
+### Collect the dices
 
 You can mark a dice collected with a button.
 
 Goal:
 
 - Updating states with an array of objects.
-- Lifting up a state from an array.
+- Using an event handler with params from a rendered list.
 
 1. RollHistory.jsx: Show a list of rolled numbers with a Button named "Collect" on each. Have an event handler property called onCollect. It should be triggered with the ID of the given dice roll, when the user clicks on the "Collect" button.
 2. App.jsx: handle the onCollect event, modify the list of rolls' collected property according to it. 
@@ -77,16 +112,21 @@ Goal:
 Component hierarchy:
 
 - App
-  - Dice(onRoll)
-  - RollHistory(rolls, onCollect)
+  - Dice (props: onRoll)
+  - RollHistory (props: rolls, onCollect)
 
-## Remove dice
+#### Background material
+  - [Replacing items in an array](https://react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)
+  - [Extra: Declarative UI](https://react.dev/learn/reacting-to-input-with-state)
+  -  
+
+### Remove a dice
 
 Remove a dice from a roll history. 
 
 Goal:
 
-- State handling, remove a given item from a state with list of objects.
+- State handling, remove a given item from a state of list of objects.
 
 1. App.jsx: Add a Remove button to each roll in a list. Use the onRemove prop as an event handler of the RollHistory component to nofity the parent component, when a user clicks on a paricular Remove button. Send the ID of the given roll to the event handler's param.
 2. App.jsx: When the RollHistory.jsx's onRemove event is happened, remove the given roll from the state.
@@ -95,10 +135,13 @@ Goal:
 Component hierarchy:
 
 - App
-  - Dice(onRoll)
-  - RollHistory(rolls, onCollect, onRemove)
+  - Dice (props: onRoll)
+  - RollHistory(props: rolls, onCollect, onRemove)
 
-## Yahtzee
+#### Background meterial
+- [Removing form an array](https://react.dev/learn/updating-arrays-in-state#removing-from-an-array)
+
+### Yahtzee
 
 Implement a simplified [yahtzee](https://en.wikipedia.org/wiki/Yahtzee) game from this state. Freestyle.
 You can reuse the components from the previous exercises.
@@ -116,9 +159,9 @@ Features, obligatory:
 Component Hierarchy:
 
 - App
-  - Dice(onRoll)
-  - RollHistory(rolls, onCollect, onRemove)
-  - CategoryResult(rolls)
+  - Dice (props: onRoll)
+  - RollHistory(props: rolls, onCollect, onRemove)
+  - CategoryResult(props: rolls)
 
 Extra features ideas:
 
