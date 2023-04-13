@@ -10,6 +10,9 @@ It is a simple Create React App
 
 `npm start`
 
+## Goal
+
+The goal of this workshop to practice the state handling and state sharing between components in React.
 
 ## Tasks
 
