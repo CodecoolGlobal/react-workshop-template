@@ -125,9 +125,9 @@ Collect the rolls, display them in a new component as an `<ul>`, `<li>` html lis
 
 Change the array of numbers to array of objects. Each object represents one roll. The roll has the following properties:
 
-- roll: the number what is rolled.
-- isSelected: a boolean, by default it is false.
-- id: a unique ID, use the `nextId()` function to generate it.  
+- `roll`: the number what is rolled.
+- `isSelected`: a boolean, by default it is false.
+- `id`: a unique ID, use the `nextId()` function to generate it.  
 
 - [ ] The rolls should be collected as an objects.
 - [ ] The `Dice` component should display the properly the current roll.
@@ -152,21 +152,21 @@ Make a roll selectable from a `DiceHistory` by adding a select button next to ea
 
 - [ ] A button with "Select" text is displayed next to each number in the dice history.
 - [ ] An `onSelect` prop is defined in the `DiceHistory` component.
-- [ ] The roll's ID must be sent to the `App`, if a user clicks on a button.
+- [ ] The roll's ID must be sent to the `App`, if a user clicks on the button. The `App` should log it to the console.
 
 ### 7. Modifying the roll's state
 
 #### Goal
   
-- Updating a state of array of objects.
+- Updating a state of an array of objects.
 
 #### Tasks
 
 When a roll is selected, it should be displayed as bold with the `<strong></strong>` element.
 
-- [ ] When an `onSelect` is happened in the `DiceHistory`, an app should update the particular roll in the `rolls` state.
+- [ ] When an `onSelect` is happened in the `DiceHistory`, an app should update the particular roll in the `rolls` state. (toggle the `isSelected` prop of the roll).
 - [ ] The `DiceHistory` component must display the selected elements as strong.
-- [ ] If the user clicks the select button next to a selected element, it should change back to normal element (in the `rolls` state and visually).
+- [ ] If the user clicks on the select button next to a selected element, it should change back to normal element (in the `rolls` state and also visually).
 
 #### Background material
 
@@ -195,14 +195,18 @@ Features, obligatory:
 
 - At most 6 rolls you have. If 6 rolls are displayed, the Roll button should be disabled. If you remove a dice, you can add a roll again. You can not remove a selected dice.
 
-- If a dice [category](https://en.wikipedia.org/wiki/Yahtzee#Lower_section) is selected, show its name in a new component. (3 of a kind, 4 of a kind, yahtzee, full house support is enough). In a case of multiple category match, the category with the highest score should be displayed. A separate component must handle the display of the category.
+- If a dice [category](https://en.wikipedia.org/wiki/Yahtzee#Lower_section) is selected, show its name in a separate component. (3 of a kind, 4 of a kind, yahtzee, full house support is enough). In a case of multiple categories are matching, the category with the highest score should be displayed.
 
-- Support restart of the game.
+- Support for restart of the game.
+
 
 Extra features ideas:
 
-- The user remove at most 3 rolls (vs all rolls). Display them how many dices still have.
+- Support for automatic remove and reroll of all non selected rolls.
+- Introduce turns. The user can re-roll at most 3 times in a turn. The final category's score is displayed to the user after 3 turns.
+- Introduce turn history. Record each turn's score, show the last 10 turn's score to the user.
+- Display a summary of the last 10 turn's score. 
 - Show the scores next to detected category.
-- Support all roll categories.
-- Support automatic reroll of all non collected components. The remove 3 dices limit can be skipped, but you can reroll only 3 times.
+- Support for all roll categories.
 - Display dice faces instead of numbers.
+- ... etc
