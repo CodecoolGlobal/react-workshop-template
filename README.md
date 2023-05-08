@@ -4,7 +4,7 @@
 
 - Use this template to create a new repo in your github account.
 
-It is a simple Create React App
+It is a simple Create React App install and start it as usual.
 
 `npm install`
 
@@ -75,7 +75,7 @@ If the DiceRoller's button is clicked, the the Dice component must display the g
 
 - [ ] A `roll` state should be created in the `App` component.
 - [ ] If the button is clicked in the DiceRoller, a state should be set in the `App`.
-- [ ] If the state is changed, it should update the Dice component.
+- [ ] If the state is changed, it should update the `Dice` component.
 
 #### Background material
 
@@ -116,7 +116,7 @@ Collect the rolls, display them in a new component as an `<ul>`, `<li>` html lis
 - https://react.dev/learn/conditional-rendering
 - https://react.dev/learn/rendering-lists
 
-### 5. Extend the Roll model
+### 5. Extend the roll model
 
 #### Goal
   - Introduce an array of objects as a state
@@ -140,7 +140,7 @@ Change the array of numbers to array of objects. Each object represents one roll
 - https://react.dev/learn/updating-arrays-in-state#adding-to-an-array
 
 
-### 6. Selecting a Roll in a history
+### 6. Selecting a roll in a history
 
 #### Goal
 
