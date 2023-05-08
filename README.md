@@ -19,156 +19,189 @@ The goal of this workshop to practice the state handling and state sharing betwe
 - Do the tasks one by one.
 - If you get stucked, check the background material's links
 
-### Dice
+- components
 
-Simulate a six side dice (D6) roll.
+### 1. Show a Dice
 
-Goal: 
+#### Goal
 
-- Learn how to use and update immutable states.
-- Use simple conditional rendering (ternary).
+- Create a new component.
+- Pass down data to the child component through props.
 
-1. Create a Dice.jsx component, import it to the App.jsx and display it.
-2. Dice.jsx: Display a Button with a text "Roll".
-3. Dice.jsx: If the user clicks on the "Roll" button, show a random number from 1 to 6 next to the button.
-4. Dice.jsx: If the Dice is not clicked, first show a "Please press the Roll button." text.
+#### Tasks
 
-Component hierarchy:
+Create a single `Dice` component. It should display a single number within a `<h2>` tag.
 
-- App
-  - Dice
-
-### Background material
-
-  - [Conditional Rendering](https://react.dev/learn/conditional-rendering)
-  - [States](https://react.dev/learn/state-a-components-memory)
-  - [Extra: how state changes are updating the component](https://react.dev/learn/render-and-commit)
-
-
-### Dice History
-
-Record the roll history of the dice rolls. Reuse the Dice.jsx from the previous example.
-
-Goal:
-
-- Learn how to lift a state up from the child component to the parent component.
-- Update mutable data structures, like an array.
-- Display lists with JSX elements.
-
-1. Refactor App.jsx, Dice.jsx: Move the state to App.jsx, remove it from Dice.jsx. The new states must be an array of numbers in App.jsx.
-3. Dice.jsx: The Dice component should notify its parent component when a new dice is rolled. It should pass the new roll's value to it. Use the `onRoll` property to communicate this change.
-4. App.jsx: Handle the `onRoll` event. Collect the rolled number in a state (array).
-5. App.jsx: Display the list (`<ul></ul>`) of the previously rolled numbers as a list items (`<li></li>`). Use the local rolls state from the App. 
-
-Component hierarchy:
-
-- App
-  - Dice (props: onRoll)
+- [ ] A separate `Dice` component should be created.
+- [ ] A `Dice` component must show a number given by a prop.
+- [ ] A `Dice` component must be called from the `App`.
 
 #### Background material
 
-- [Lifting The States Up](https://react.dev/learn/sharing-state-between-components)
-- [Responding to events](https://react.dev/learn/responding-to-events)
-- [Updating Arrays](https://react.dev/learn/updating-arrays-in-state)
-- [Rendering Lists](https://react.dev/learn/rendering-lists)
+- https://react.dev/learn/importing-and-exporting-components
+- https://react.dev/learn/passing-props-to-a-component
 
-### Extend the roll model
 
-Goal:
+### 2. Create a Dice Roller
 
-- Learn how to pass down a state from parent to child.
-- Adding new items to an array of objects.
+#### Goal
 
-1. Create a RollHistory.jsx component, import it to the App.jsx and display it.
-2. App.jsx: Record the following properties of each dice roll (the state should be changed from array of numbers to array of objects), the event still the Dice.jsx component's onRoll:
+- Sending data up to the parent through a prop. 
 
-- The number which is rolled by the Dice.jsx.
-- The a boolean propery, indicated that the dice is collected or not.
-- An ID, an increasing number on each new roll.
+#### Tasks
 
-2. RollHistory.jsx: move the list of rolls from App to this component, use a prop to pass down the rolls. 
+Create a `DiceRoller` component with a button, it should generate a random number between 1 and 6, and send it to its parent.
 
-Component hierarchy:
-
-- App
-  - Dice (props: onRoll)
-  - RollHistory (props: rolls)
+- [ ] A separate `DiceRoller` component should be created.
+- [ ] A button must be rendered by the `DiceRoller` component.
+- [ ] A prop should be existed on the component to handle the `onRoll` "event".
+- [ ] If a button is clicked, the prop should be called, and passed a random number between 1-6 to the function.
+- [ ] The component must be included in the `App`.
+- [ ] The `App` must pass down a function to a `onRoll` event. 
+- [ ] The `App` must log to the console the given number.
 
 #### Background material
 
-- [Passing Props to a Component](https://react.dev/learn/passing-props-to-a-component)
-- [Adding an Item to an Array](https://react.dev/learn/updating-arrays-in-state#adding-to-an-array)
+- https://react.dev/learn/responding-to-events
 
-### Collect the dices
+### 3. Connect the Dice with the Dice Roller
 
-You can mark a dice collected with a button.
+#### Goal
+  - Updating a state of the component.
 
-Goal:
+#### Tasks
 
-- Updating states with an array of objects.
-- Using an event handler with params from a rendered list.
+If the DiceRoller's button is clicked, the the Dice component must display the generated number.
 
-1. RollHistory.jsx: Show a list of rolled numbers with a Button named "Collect" on each. Have an event handler property called onCollect. It should be triggered with the ID of the given dice roll, when the user clicks on the "Collect" button.
-2. App.jsx: handle the onCollect event, modify the list of rolls' collected property according to it. 
-3. RollHistory.jsx: If roll is collected, show its number with ~~strikethrought~~ style. The Collect button must be disabled. If a roll is collected, it should be kept collected afterwards.
-
-Component hierarchy:
-
-- App
-  - Dice (props: onRoll)
-  - RollHistory (props: rolls, onCollect)
+- [ ] A `roll` state should be created in the `App` component.
+- [ ] If the button is clicked in the DiceRoller, a state should be set in the `App`.
+- [ ] If the state is changed, it should update the Dice component.
 
 #### Background material
-  - [Replacing items in an array](https://react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array)
-  - [Extra: Declarative UI](https://react.dev/learn/reacting-to-input-with-state)
-  -  
 
-### Remove a dice
+- https://react.dev/learn/state-a-components-memory
+- (extra) https://react.dev/learn/render-and-commit
+- (extra) https://react.dev/learn/state-as-a-snapshot
 
-Remove a dice from a roll history. 
 
-Goal:
+### 4. Collect the previous rolls
 
-- State handling, remove a given item from a state of list of objects.
+#### Goal
 
-1. App.jsx: Add a Remove button to each roll in a list. Use the onRemove prop as an event handler of the RollHistory component to nofity the parent component, when a user clicks on a paricular Remove button. Send the ID of the given roll to the event handler's param.
-2. App.jsx: When the RollHistory.jsx's onRemove event is happened, remove the given roll from the state.
-3. App.jsx: Only the non collected rolls can be removed.
+  - Updating a state when the data is an array.
+  - Display a list in react.
+  - Do a conditional rendering.
 
-Component hierarchy:
+#### Tasks 
 
-- App
-  - Dice (props: onRoll)
-  - RollHistory(props: rolls, onCollect, onRemove)
+Collect the rolls, display them in a new component as an `<ul>`, `<li>` html list.
+
+- [ ] A new `rolls` state should be created in App.js, to store the previous rolls.
+- [ ] If a new roll is occured, it should be added to the `rolls` state.
+- [ ] A new `DiceHistory` component should be created to display an array of numbers as a list like:
+
+```html
+  <ul>
+    <li>4</li>
+    <li>2</li>
+  </ul>
+```
+- [ ] A new component must receive the rolls as a prop.
+- [ ] If the list is empty, it should display the "No dice rolls yet." text.
+- [ ] A new component must be included in the App component.
+
+#### Background material
+
+- https://react.dev/learn/updating-arrays-in-state
+- https://react.dev/learn/conditional-rendering
+- https://react.dev/learn/rendering-lists
+
+### 5. Extend the Roll model
+
+#### Goal
+  - Introduce an array of objects as a state
+
+#### Tasks
+
+Change the array of numbers to array of objects. Each object represents one roll. The roll has the following properties:
+
+- roll: the number what is rolled.
+- isSelected: a boolean, by default it is false.
+- id: a unique ID, use the `nextId()` function to generate it.  
+
+- [ ] The rolls should be collected as an objects.
+- [ ] The `Dice` component should display the properly the current roll.
+- [ ] The `DiceHistory` component should display the previous rolls properly.
+- [ ] The react warning about a key prop must be disappear from the console.
+
+#### Background material
+
+- https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
+- https://react.dev/learn/updating-arrays-in-state#adding-to-an-array
+
+
+### 6. Selecting a Roll in a history
+
+#### Goal
+
+  - Selecting an item from a list.
+
+#### Task
+
+Make a roll selectable from a `DiceHistory` by adding a select button next to each roll.
+
+- [ ] A button with "Select" text is displayed next to each number in the dice history.
+- [ ] An `onSelect` prop is defined in the `DiceHistory` component.
+- [ ] The roll's ID must be sent to the `App`, if a user clicks on a button.
+
+### 7. Modifying the roll's state
+
+#### Goal
+  
+- Updating a state of array of objects.
+
+#### Tasks
+
+When a roll is selected, it should be displayed as bold with the `<strong></strong>` element.
+
+- [ ] When an `onSelect` is happened in the `DiceHistory`, an app should update the particular roll in the `rolls` state.
+- [ ] The `DiceHistory` component must display the selected elements as strong.
+- [ ] If the user clicks the select button next to a selected element, it should change back to normal element (in the `rolls` state and visually).
+
+#### Background material
+
+- https://react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array
+
+### 8. Remove a roll
+
+#### Task
+
+Create button next to each roll in a `DiceHistory` element. If the users click on it, remove that paricular roll from the list. 
 
 #### Background meterial
-- [Removing form an array](https://react.dev/learn/updating-arrays-in-state#removing-from-an-array)
+- https://react.dev/learn/updating-arrays-in-state#removing-from-an-array)
 
-### Yahtzee
+### 9. Yahtzee
 
-Implement a simplified [yahtzee](https://en.wikipedia.org/wiki/Yahtzee) game from this state. Freestyle.
+Implement a simplified [yahtzee](https://en.wikipedia.org/wiki/Yahtzee) game from this state. Freestyle task.
+
 You can reuse the components from the previous exercises.
 
 Goal: 
 
-  - Play a little bit around what you have learned.
+- Play a little bit around what you have learned.
 
 Features, obligatory:
 
-- At most 6 rolls you have. If 6 rolls are displayed, the Roll button should be disabled. If you remove a dice, you can add a roll again. You can not remove a collected dice.
-- If a dice [category](https://en.wikipedia.org/wiki/Yahtzee#Lower_section) is collected, show its name in a new component. (3 of a kind, 4 of a kind, yahtzee, full house support is enough). In a case of multiple category match, the category with the highest score should be displayed.
+- At most 6 rolls you have. If 6 rolls are displayed, the Roll button should be disabled. If you remove a dice, you can add a roll again. You can not remove a selected dice.
+
+- If a dice [category](https://en.wikipedia.org/wiki/Yahtzee#Lower_section) is selected, show its name in a new component. (3 of a kind, 4 of a kind, yahtzee, full house support is enough). In a case of multiple category match, the category with the highest score should be displayed. A separate component must handle the display of the category.
+
 - Support restart of the game.
-
-Component Hierarchy:
-
-- App
-  - Dice (props: onRoll)
-  - RollHistory(props: rolls, onCollect, onRemove)
-  - CategoryResult(props: rolls)
 
 Extra features ideas:
 
-- The user remove at most 3 dices. Display them how many dices still have.
+- The user remove at most 3 rolls (vs all rolls). Display them how many dices still have.
 - Show the scores next to detected category.
 - Support all roll categories.
 - Support automatic reroll of all non collected components. The remove 3 dices limit can be skipped, but you can reroll only 3 times.
