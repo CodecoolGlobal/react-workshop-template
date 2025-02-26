@@ -4,11 +4,11 @@
 
 - Use this template to create a new repo in your github account.
 
-It is a simple Create React App install and start it as usual.
+It is a simple React App using Vite, install and start it as usual.
 
 `npm install`
 
-`npm start`
+`npm run dev`
 
 ## Goal
 
@@ -17,9 +17,8 @@ The goal of this workshop to practice the state handling and state sharing betwe
 ## Tasks
 
 - Do the tasks one by one.
-- If you get stucked, check the background material's links
+- If you get stuck, check the background material's links
 
-- components
 
 ### 1. Show a Dice
 
@@ -97,7 +96,7 @@ If the DiceRoller's button is clicked, the the Dice component must display the g
 Collect the rolls, display them in a new component as an `<ul>`, `<li>` html list.
 
 - [ ] A new `rolls` state should be created in App.js, to store the previous rolls.
-- [ ] If a new roll is occured, it should be added to the `rolls` state.
+- [ ] If a new roll is occurred, it should be added to the `rolls` state.
 - [ ] A new `DiceHistory` component should be created to display an array of numbers as a list like:
 
 ```html
@@ -176,9 +175,9 @@ When a roll is selected, it should be displayed as bold with the `<strong></stro
 
 #### Task
 
-Create button next to each roll in a `DiceHistory` element. If the users click on it, remove that paricular roll from the list. 
+Create button next to each roll in a `DiceHistory` element. If the users click on it, remove that particular roll from the list. 
 
-#### Background meterial
+#### Background material
 - https://react.dev/learn/updating-arrays-in-state#removing-from-an-array)
 
 ### 9. Yahtzee
